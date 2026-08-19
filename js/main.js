@@ -290,6 +290,54 @@ const beforeAfterSlider = () => {
   });
 };
 
+// ========== ONLINE SCHEDULING FORM ==========
+const schedulingForm = () => {
+  const form = document.getElementById('scheduling-form');
+  if (!form) return;
+
+  const CLINIC_PHONE = '5511969196215';
+  const errorEl = document.getElementById('form-error');
+  const dateInput = document.getElementById('date');
+
+  const today = new Date().toISOString().split('T')[0];
+  dateInput.setAttribute('min', today);
+
+  const formatDate = (isoDate) => {
+    const [year, month, day] = isoDate.split('-');
+    return `${day}/${month}/${year}`;
+  };
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    errorEl.textContent = '';
+
+    const procedure = document.getElementById('procedure').value;
+    const dateValue = document.getElementById('date').value;
+    const time = document.getElementById('time').value;
+    const fullname = document.getElementById('fullname').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+
+    if (!procedure || !dateValue || !time || !fullname || !phone) {
+      errorEl.textContent = 'Preencha todos os campos para continuar.';
+      return;
+    }
+
+    const selectedDate = new Date(dateValue + 'T00:00:00');
+    const dayOfWeek = selectedDate.getDay();
+
+    if (dayOfWeek === 0) {
+      errorEl.textContent = 'Não atendemos aos domingos. Escolha uma data de segunda a sábado.';
+      return;
+    }
+
+    const formattedDate = formatDate(dateValue);
+    const message = `Olá! Gostaria de agendar: ${procedure} para ${formattedDate} às ${time}. Nome: ${fullname}. Telefone: ${phone}.`;
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=${CLINIC_PHONE}&text=${encodeURIComponent(message)}`;
+
+    window.open(whatsappUrl, '_blank');
+  });
+};
+
 // ========== LAZY LOAD VIDEOS ==========
 const lazyLoadVideos = () => {
   const videos = document.querySelectorAll('video[data-src]');
@@ -355,6 +403,7 @@ document.addEventListener('DOMContentLoaded', () => {
   headerScrollEffect();
   beforeAfterSlider();
   lazyLoadVideos();
+  schedulingForm();
 
   // Refresh ScrollTrigger after all content is loaded
   ScrollTrigger.refresh();

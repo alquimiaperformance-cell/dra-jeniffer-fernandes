@@ -26,6 +26,7 @@
       <nav class="nav-menu">
         <a href="#home" class="nav-link">Início</a>
         <a href="#treatments" class="nav-link">Tratamentos</a>
+        <a href="#scheduling" class="nav-link">Agendamento</a>
         <a href="#about" class="nav-link">Sobre</a>
         <a href="#reviews" class="nav-link">Avaliações</a>
         <a href="#location" class="nav-link">Localização</a>
@@ -171,6 +172,78 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ONLINE SCHEDULING -->
+<section class="scheduling" id="scheduling">
+  <div class="container">
+    <span class="section-tag">AGENDE SEM SAIR DO SITE</span>
+    <h2 class="section-title">Agendamento Online</h2>
+    <p class="scheduling-subtitle">Escolha o procedimento, a data e o horário. Enviamos sua solicitação direto para o WhatsApp da clínica.</p>
+
+    <form class="scheduling-form" id="scheduling-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="procedure">Procedimento</label>
+          <select id="procedure" name="procedure" required>
+            <option value="" disabled selected>Selecione um procedimento</option>
+            <option value="Harmonização Facial">Harmonização Facial</option>
+            <option value="BioLift Facial Integrativo">BioLift Facial Integrativo</option>
+            <option value="Protocolo FirmButt®">Protocolo FirmButt®</option>
+            <option value="Endolipo Facial & Corporal">Endolipo Facial & Corporal</option>
+            <option value="Toxina Botulínica (Botox)">Toxina Botulínica (Botox)</option>
+            <option value="Tratamento de Manchas & Melasma">Tratamento de Manchas & Melasma</option>
+            <option value="Preenchimento Labial">Preenchimento Labial</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="date">Data</label>
+          <input type="date" id="date" name="date" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="time">Horário</label>
+          <select id="time" name="time" required>
+            <option value="" disabled selected>Selecione um horário</option>
+            <option value="09:00">09:00</option>
+            <option value="10:00">10:00</option>
+            <option value="11:00">11:00</option>
+            <option value="12:00">12:00</option>
+            <option value="13:00">13:00</option>
+            <option value="14:00">14:00</option>
+            <option value="15:00">15:00</option>
+            <option value="16:00">16:00</option>
+            <option value="17:00">17:00</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Telefone / WhatsApp</label>
+          <input type="tel" id="phone" name="phone" placeholder="(11) 99999-9999" required>
+        </div>
+      </div>
+
+      <div class="form-row form-row-single">
+        <div class="form-group">
+          <label for="fullname">Nome Completo</label>
+          <input type="text" id="fullname" name="fullname" placeholder="Digite seu nome completo" required>
+        </div>
+      </div>
+
+      <span class="form-error" id="form-error"></span>
+
+      <button type="submit" class="cta-button primary scheduling-submit">
+        <svg class="whatsapp-icon-inline" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12.001 2C6.478 2 2 6.477 2 11.999c0 1.986.585 3.888 1.688 5.505L2.05 22l4.611-1.615A9.958 9.958 0 0 0 12 22c5.523 0 10-4.477 10-10.001C22 6.477 17.522 2 12.001 2zm0 18.187a8.157 8.157 0 0 1-4.16-1.135l-.298-.177-3.086 1.08 1.093-3.006-.194-.309a8.14 8.14 0 0 1-1.256-4.34c0-4.503 3.665-8.166 8.169-8.166 2.184 0 4.24.85 5.78 2.39a8.107 8.107 0 0 1 2.39 5.78c-.001 4.503-3.667 8.166-8.171 8.166z"/>
+        </svg>
+        Agendar via WhatsApp
+      </button>
+    </form>
   </div>
 </section>
 

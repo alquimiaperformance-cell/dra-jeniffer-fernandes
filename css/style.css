@@ -518,6 +518,108 @@ em {
   flex-grow: 1;
 }
 
+/* ========== ONLINE SCHEDULING ========== */
+.scheduling {
+  padding: var(--spacing-2xl) 0;
+  background-color: #FFFFFF;
+  text-align: center;
+}
+
+.scheduling-subtitle {
+  max-width: 600px;
+  margin: 0 auto var(--spacing-xl);
+  color: var(--text-light);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.scheduling-form {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: left;
+  background-color: var(--bg-light);
+  padding: var(--spacing-xl);
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.form-row-single {
+  grid-template-columns: 1fr;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.form-group select,
+.form-group input {
+  padding: 0.875rem 1rem;
+  border: 1.5px solid rgba(107, 26, 58, 0.2);
+  border-radius: var(--border-radius);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--text-main);
+  background-color: #FFFFFF;
+  transition: var(--transition-fast);
+}
+
+.form-group select:focus,
+.form-group input:focus {
+  outline: none;
+  border-color: var(--primary-dark);
+  box-shadow: 0 0 0 3px rgba(107, 26, 58, 0.1);
+}
+
+.form-error {
+  display: block;
+  color: #B23A3A;
+  font-size: 0.85rem;
+  min-height: 1.2em;
+  margin-bottom: var(--spacing-sm);
+}
+
+.scheduling-submit {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-sm);
+  border: none;
+  cursor: pointer;
+}
+
+.whatsapp-icon-inline {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .scheduling-form {
+    padding: var(--spacing-lg);
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ========== MANIFESTO ========== */
 .manifesto {
   background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-darker) 100%);
