@@ -298,6 +298,16 @@ const schedulingForm = () => {
   const CLINIC_PHONE = '5511969196215';
   const errorEl = document.getElementById('form-error');
   const dateInput = document.getElementById('date');
+  const timeSelect = document.getElementById('time');
+
+  // Terça a Sexta: 10h-19h | Sábado: 9h-15h | Domingo e Segunda: fechado
+  const HOURS_BY_DAY = {
+    2: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'],
+    3: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'],
+    4: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'],
+    5: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'],
+    6: ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00']
+  };
 
   const today = new Date().toISOString().split('T')[0];
   dateInput.setAttribute('min', today);
@@ -307,26 +317,59 @@ const schedulingForm = () => {
     return `${day}/${month}/${year}`;
   };
 
+  const populateTimes = (dayOfWeek) => {
+    timeSelect.innerHTML = '';
+
+    const hours = HOURS_BY_DAY[dayOfWeek];
+
+    if (!hours) {
+      const option = document.createElement('option');
+      option.value = '';
+      option.disabled = true;
+      option.selected = true;
+      option.textContent = 'Fechado neste dia';
+      timeSelect.appendChild(option);
+      timeSelect.disabled = true;
+      errorEl.textContent = 'Não atendemos aos domingos e segundas-feiras. Escolha terça a sábado.';
+      return;
+    }
+
+    errorEl.textContent = '';
+    timeSelect.disabled = false;
+
+    const placeholder = document.createElement('option');
+    placeholder.value = '';
+    placeholder.disabled = true;
+    placeholder.selected = true;
+    placeholder.textContent = 'Selecione um horário';
+    timeSelect.appendChild(placeholder);
+
+    hours.forEach(hour => {
+      const option = document.createElement('option');
+      option.value = hour;
+      option.textContent = hour;
+      timeSelect.appendChild(option);
+    });
+  };
+
+  dateInput.addEventListener('change', () => {
+    if (!dateInput.value) return;
+    const selectedDate = new Date(dateInput.value + 'T00:00:00');
+    populateTimes(selectedDate.getDay());
+  });
+
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     errorEl.textContent = '';
 
     const procedure = document.getElementById('procedure').value;
     const dateValue = document.getElementById('date').value;
-    const time = document.getElementById('time').value;
+    const time = timeSelect.value;
     const fullname = document.getElementById('fullname').value.trim();
     const phone = document.getElementById('phone').value.trim();
 
     if (!procedure || !dateValue || !time || !fullname || !phone) {
       errorEl.textContent = 'Preencha todos os campos para continuar.';
-      return;
-    }
-
-    const selectedDate = new Date(dateValue + 'T00:00:00');
-    const dayOfWeek = selectedDate.getDay();
-
-    if (dayOfWeek === 0) {
-      errorEl.textContent = 'Não atendemos aos domingos. Escolha uma data de segunda a sábado.';
       return;
     }
 
